@@ -1,0 +1,18 @@
+<ol>
+    <li> <%= link_to "Author Index", "/authors" %> </li>
+    <li> <%= link_to "Book Index", "/books" %> </li>
+</ol>
+<hr>
+
+<h1> <%= @author.name %> (b. <%= @author.birth_year %>) </h1>
+Books
+<ul>
+    <% @author.books.each do |b| %>
+    <li> <%= link_to b.title, "/books/#{b.id}" %></li>
+<% end %>
+</ul>
+
+<%= link_to "Edit #{@author.name}", "/authors/#{@author.id}/edit"%>
+<%= form_for(@author, :html => {:method => :delete}) do |a| %>
+    <%= a.submit "Delete #{@author.name}"%>
+<% end %>

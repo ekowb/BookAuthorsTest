@@ -1,0 +1,12 @@
+<ol>
+    <li> <%= link_to "Author Index", "/authors" %> </li>
+    <li> <%= link_to "Book Index", "/books" %> </li>
+</ol>
+<hr>
+<%= link_to "New Book", "/books/new" %>
+<h1> All Books </h1>
+<% @books.each do |a| %>
+<ul>
+    <li><%= link_to a.title, book_path(a) %> (<%= "#{a.pages}" %> pages) </li>
+</ul>    
+<%end%>

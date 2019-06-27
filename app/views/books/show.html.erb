@@ -1,0 +1,21 @@
+<ol>
+    <li> <%= link_to "Author Index", "/authors" %> </li>
+    <li> <%= link_to "Book Index", "/books" %> </li>
+</ol>
+<hr>
+
+<h1> <%= @book.title %> (<%= @book.pages %> page(s)) </h1>
+Authors
+<ul>
+    <% @book.authors.each do |b| %>
+    <li> <%= link_to b.name, "/authors/#{b.id}" %></li>
+    <%= form_for(BookAuthor.find_by(author_id: b.id, book_id: params[:id]), :method => :delete) do |x| %>
+    <%= x.submit %>%
+<% end %>
+<% end %>
+</ul>
+
+<%= form_for @book do |b| %>
+    <%= b.collection_select :author_ids, Author.all, :id, :name %>
+    <%= b.submit %>
+<% end %>

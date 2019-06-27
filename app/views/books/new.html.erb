@@ -1,0 +1,26 @@
+<%if flash[:error]%>
+<ul>
+    <% flash[:error].each do |f|%>
+        <li> <%= f %> </li>
+    <% end %>
+    </ul>
+<% end %>
+<ol>
+    <li> <%= link_to "Author Index", "/authors" %> </li>
+    <li> <%= link_to "Book Index", "/books" %> </li>
+</ol>
+<hr>
+
+<h1> Create Book </h1>
+    <%= form_for @book do |a|  %>
+        <br> Name <%= a.text_field :title %> </br>
+        <br> Pages <%=  a.text_field :pages %> </br>
+        <br> Authors </br>
+        <%= a.collection_check_boxes :author_ids, Author.all, :id, :name do |box| %>
+            <div>
+                <%= box.text %> <%= box.check_box%>
+            </div>
+        <% end%>
+        <br> <%= a.submit %> </br>
+    <% end %>
+    

@@ -1,0 +1,27 @@
+<%if flash[:error]%>
+<ul>
+    <% flash[:error].each do |f|%>
+        <li> <%= f %> </li>
+    <% end %>
+    </ul>
+<% end %>
+
+
+<ol>
+    <li> <%= link_to "Author Index", "/authors" %> </li>
+    <li> <%= link_to "Book Index", "/books" %> </li>
+</ol>
+<hr>
+
+
+
+
+<h1>Edit <%= @author.name %> </h1>
+    <%= form_for @author do |a|  %>
+        <br> Name <%= a.text_field :name, value: @author.name %> </br>
+        <br> Birth Year <%=  a.text_field :birth_year, value: @author.birth_year %> </br>
+        <br> <%= a.submit %> </br>
+    <% end %>
+
+
+
